@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/cupertino.dart';
+
 class Product {
   static int currentID = 0;
   String image;
@@ -8,6 +10,7 @@ class Product {
   String description;
   double price;
   bool fav = false;
+  bool cart = false;
   Product(
       {required this.image,
       required this.productName,
@@ -17,7 +20,7 @@ class Product {
   }
 }
 
-class DummyData {
+class DummyData with ChangeNotifier {
   static List<Product> product = [
     Product(
         image: "assets/1.jpg",

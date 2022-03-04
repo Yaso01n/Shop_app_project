@@ -15,7 +15,7 @@ class MyNavigationBar extends StatefulWidget {
 class _MyNavigationBarState extends State<MyNavigationBar> {
   int _selectedIndex = 0;
 
-  List<Widget> hgff = [
+  List<Widget> pagechosen = [
     MyHomePage(),
     FavPage(),
     Cartpage(),
@@ -41,7 +41,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           ),
           backgroundColor: Colors.purple[800],
         ),
-        body: hgff.elementAt(_selectedIndex),
+        body: pagechosen.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.purple[800],
           items: [

@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import './Dummy_Data.dart';
 import './Login_Page.dart';
 import './Home_Page.dart';
 import './Cart_Page.dart';
@@ -18,16 +20,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        'logg': (context) => Loginpage(),
-        'home': (context) => MyHomePage(),
-        'cart': (context) => Cartpage(),
-        'fav': (context) => FavPage(),
-        '/bar': (context) => MyNavigationBar(),
-        'detail': (context) => DetailsPage(),
-      },
-      initialRoute: 'logg',
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<CartProvider>(
+            create: (context) => CartProvider(),
+          ),
+          ChangeNotifierProvider<DummyData>(
+            create: (context) => DummyData(),
+          ),
+          ChangeNotifierProvider<FavProvider>(
+            create: (context) => FavProvider(),
+          ),
+        ],
+        child: MaterialApp(
+          routes: {
+            'logg': (context) => Loginpage(),
+            'home': (context) => MyHomePage(),
+            'cart': (context) => Cartpage(),
+            'fav': (context) => FavPage(),
+            '/bar': (context) => MyNavigationBar(),
+            'detail': (context) => DetailsPage(),
+          },
+          initialRoute: 'logg',
+        ));
   }
 }
